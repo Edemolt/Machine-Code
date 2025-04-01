@@ -53,7 +53,24 @@ class BST{
         }
 
         int findMin(){
+            if(!(root)){
+                cout<<"Empty tree\n";
+                return -1;
+            }
             return ( findMin(root))->val;
+        }
+
+        Node * findMax(Node * node){
+            while(node->right) node = node->right;
+            return node;
+        }
+
+        int findMax(){
+            if(!(root)){
+                cout<<"Empty tree\n";
+                return -1;
+            }
+            return (findMax(root))->val;
         }
 
         Node * remove( Node * node, int val){
