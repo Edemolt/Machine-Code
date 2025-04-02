@@ -1,3 +1,7 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
 class LL{
     public:
         int key, val;
@@ -21,7 +25,7 @@ class LRUCache {
 public:
     int sz;
     LL * l, *r;
-    map<int, LL *> mp;
+    unordered_map<int, LL *> mp;
     
     LRUCache(int capacity) {
         sz = capacity;
@@ -75,3 +79,22 @@ public:
        }
     }
 };
+
+
+int main() {
+    LRUCache cache(2); // Cache with capacity 2
+
+    cache.put(1, 10);
+    cache.put(2, 20);
+    cout << "Get 1: " << cache.get(1) << endl; // Returns 10
+
+    cache.put(3, 30); // Evicts key 2
+    cout << "Get 2: " << cache.get(2) << endl; // Returns -1 (not found)
+
+    cache.put(4, 40); // Evicts key 1
+    cout << "Get 1: " << cache.get(1) << endl; // Returns -1 (not found)
+    cout << "Get 3: " << cache.get(3) << endl; // Returns 30
+    cout << "Get 4: " << cache.get(4) << endl; // Returns 40
+    
+    return 0;
+}
